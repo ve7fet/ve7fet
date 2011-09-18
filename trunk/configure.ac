@@ -73,7 +73,6 @@ AC_CONFIG_FILES([Makefile \
 	pad/Makefile \
 	tcp/Makefile \
 	wp/Makefile \
-	kiss/Makefile \
 	tools/Makefile \
 	stats/Makefile \
 	doc/Makefile \
