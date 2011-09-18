@@ -16,7 +16,7 @@
 static cfg_t cfg;		/* FPAC configuration file */
 static int listening_socket;
 static char *wp_file = FPACWP;	/* Default file */
-int verbose = FALSE;
+int verbose = TRUE;
 int wp_trace_flag = 0;
 static int is_daemon = 1;
 static int wp_passive = 0;
