@@ -64,5 +64,25 @@ AC_FUNC_VPRINTF
 AC_CHECK_FUNCS(alarm dup2 gethostbyaddr gethostname gettimeofday inet_ntoa memchr memove memset mkdir munmap putenv select setenv socket sqrt strcasecmp strchar strcspn strdup strerror strncasecmp strpbrk strrchr strspn strstr strtol strtoul uname)
 
 
-AC_CONFIG_FILES([Makefile lib/Makefile cfg/Makefile monitor/Makefile node/Makefile flex/Makefile pad/Makefile tcp/Makefile wp/Makefile kiss/Makefile tools/Makefile stats/Makefile doc/Makefile doc/html/Makefile help/Makefile scripts/versions:scripts/versions.in scripts/fpac.sh:scripts/fpac.in scripts/Makefile etc/Makefile fpac.spec])
+AC_CONFIG_FILES([Makefile \
+	lib/Makefile \
+	cfg/Makefile \
+	monitor/Makefile \
+	node/Makefile \
+	flex/Makefile \
+	pad/Makefile \
+	tcp/Makefile \
+	wp/Makefile \
+	kiss/Makefile \
+	tools/Makefile \
+	stats/Makefile \
+	doc/Makefile \
+	doc/html/Makefile \
+	help/Makefile \
+	scripts/ax25parms \
+	scripts/versions \
+	scripts/fpac.sh:scripts/fpac.in \
+	scripts/Makefile \
+	etc/Makefile \
+	fpac.spec])
 AC_OUTPUT

@@ -1,9 +1,21 @@
-
 /*
- * aprslist.c (after mheardd.c)
- *
- * FPAC project
- */
+* aprslist.c (after mheardd.c)
+* This creates the aprslist binary
+* 
+* It uses the aprslist.conf file to beacon a
+* aprs position (and beacon) packet out a defined
+* port in axports
+*
+* It also listens to the port and logs aprs packets 
+* to aprs.dat
+*
+* Options:
+*	-d don't fork in to daemon mode
+*	-l log to syslog
+*	-s show the contents of aprs.dat and exit
+*	-v show version 
+*
+*/
 #include <math.h>
 #include <ctype.h>
 #include <time.h>
@@ -779,7 +791,7 @@ int main(int argc, char **argv)
 	{
 		read_aprs();
 		dump_aprs();
-	/*	exit(0);*/
+		exit(0);
 	}
 	
 	act.sa_handler = SignalTERM;
@@ -813,9 +825,6 @@ int main(int argc, char **argv)
 		openlog("aprslist", LOG_PID, LOG_DAEMON);
 		syslog(LOG_INFO, "starting");
 	}
-
-/*	read_aprs();
-	dump_aprs();*/
 
 	for (;;) 
 	{
