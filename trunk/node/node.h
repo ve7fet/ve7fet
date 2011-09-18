@@ -14,9 +14,9 @@
  *#include <linux/rose.h>
  */
 #include <sys/ipc.h>	/* for key_t */
-#include "ax25compat.h"
-#include "fpac.h"
-#include "wp.h"
+#include "../lib/ax25compat.h"
+#include "../lib/fpac.h"
+#include "../lib/wp.h"
 
 #define STATE_IDLE	0
 #define STATE_TRYING	1
@@ -57,7 +57,7 @@ struct cmd {
 	struct cmd *next;
 };
 
-struct user
+struct fpac_user
 {
 	int		pid;
 	int		fd;
@@ -76,7 +76,7 @@ struct user
 	char		unused[92];
 };
 
-extern struct user User;
+extern struct fpac_user User;
 
 extern long IdleTimeout;
 extern long ConnTimeout;
@@ -129,7 +129,7 @@ extern int user_count(void);
 /* in config.c */
 extern int is_hidden(const char *port);
 extern int check_perms(int what, unsigned long peer);
-extern char *read_perms(struct user *up, unsigned long peer);
+extern char *read_perms(struct fpac_user *up, unsigned long peer);
 extern int read_config(void);
 
 /* in command.c */
