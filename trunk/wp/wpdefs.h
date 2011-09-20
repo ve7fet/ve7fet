@@ -51,8 +51,8 @@ struct wp_adjacent {
 #define WPA_CONNECTING		1
 #define WPA_CONNECTED		2
 
-#define WPA_RETRY_CONNECT	(30*60)	/* Retry adjacent connection delay */
-#define WPA_VECTOR_PERIOD	(3600)	/* Process a vector exchange every hour */	
+#define WPA_RETRY_CONNECT	(10*60)	/* Retry adjacent connection delay */
+#define WPA_VECTOR_PERIOD	(1800)	/* Process a vector exchange every half hour */	
 
 /* #define WP_API_TIMEOUT	10	Timeout for access to wp server */
 #define PROC_RS_FILE		"/proc/net/rose"
