@@ -94,7 +94,7 @@ void wp_flush_pdu(void)
 	if (pdu_s_len == 0)
 		return;
 
-	rc = write(pdu_s, pdu_s_cache, pdu_s_len);
+	rc = send(pdu_s, pdu_s_cache, pdu_s_len, 0);
 	pdu_s_len = 0;
 
 	if (rc <= 0)	{
@@ -366,7 +366,7 @@ int wp_receive_pdu(int s, wp_pdu *pdu)
 		}
 	
 		/* Read the packet */
-		rc = read(s, pdu_r_cache, sizeof(pdu_r_cache));
+		rc = recv(s, pdu_r_cache, sizeof(pdu_r_cache), 0);
 		if (rc <= 0) {
 /*			syslog(LOG_INFO, "wp_receive_pdu()rc read disconnection or error - status %d\n", pdu->data.status);*/
 			return rc;	/* Disconnection or error */
