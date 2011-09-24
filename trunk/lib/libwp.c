@@ -98,7 +98,7 @@ void wp_flush_pdu(void)
 	pdu_s_len = 0;
 
 	if (rc <= 0)	{
-/*		syslog(LOG_INFO, "wp_flush_pdu() WRITE ERROR - closing wp socket"); */
+/*		syslog(LOG_INFO, "wp_flush_pdu() WRITE ERROR - closing wp socket");*/
 		close(pdu_s);
 	}
 }

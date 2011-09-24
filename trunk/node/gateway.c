@@ -34,6 +34,10 @@
 #define SOL_AX25 257
 #endif
 
+#ifndef AF_FLEXNET
+#define AF_FLEXNET 128
+#endif
+
 #define ENOIOCTLCMD 515
 
 extern int node_is_connected(char *);
@@ -428,16 +432,18 @@ static int connect_to(char *address[], int family, int escape, char *source)
 
 	case AF_AX25:
 	case AF_FLEXNET:
-/*		if (family == AF_FLEXNET)
+		if (family == AF_FLEXNET)
 			dest = address[0];
-		else */
+		else 
 			if ((dest = ax25_config_get_addr(address[0])) == NULL)
 			{
 				node_msg("Invalid port");
 				return -1;
 			}
+/* DEBUG F6BVP */
+/*		fprintf (stderr, "Family = AF_AX25 =%d address[0] ='%s' address[1] ='%s' call ='%s' dest ='%s' cfg.alt_callsign ='%s'\n", family, address[0], address[1], call, dest, cfg.alt_callsign);*/
 		
-		if (strcasecmp(address[1], cfg.alt_callsign) == 0)
+		if (strcasecmp(address[0], cfg.alt_callsign) == 0)
 		{
 			node_msg("already connected to %s", call);
 			return -1;
@@ -645,7 +651,7 @@ static int connect_to(char *address[], int family, int escape, char *source)
 					syslog(LOG_INFO,"\nSystem facilities returned %d\n", i);
 					fprintf(stderr, "\nSystem facilities returned %d\n", i);
 					syslog(LOG_ERR, "\nSystem facilities returned %d\n", i);
-	*/				
+*/				
 					/* Get the cause and diag */
 					rose_cause.cause = ROSE_LOCAL_PROCEDURE;
 					rose_cause.diagnostic = 0;
@@ -882,7 +888,7 @@ int do_connect(int argc, char **argv)
 		}
 
 		/* Check if known NetRom node */
-		if ((argc == 2) && (is_netrom(argv[1], netromcall)))
+		else if ((argc == 2) && (is_netrom(argv[1], netromcall)))
 		{
 			argv[1] = netromcall;
 			family = AF_NETROM;
@@ -913,7 +919,7 @@ int do_connect(int argc, char **argv)
 			if ((strlen(argv[2]) == 3) && (des2dnic(argv[2]) != NULL))
 			{
 				/* Digi is a country designator */
-				strcpy(argv[2], des2dnic(argv[2]));
+/* F6BVP			strcpy(argv[2], des2dnic(argv[2])); */
 				family = AF_ROSE;
 			}
 			else if (strspn(argv[2], "0123456789") == strlen(argv[2]))

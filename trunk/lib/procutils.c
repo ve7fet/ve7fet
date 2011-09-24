@@ -187,17 +187,15 @@ struct flex_gt *read_flex_gt(void)
 
 		k = 0;
 		while ((cp = strtok(NULL, " \t\n\r")) != NULL && k < AX25_MAX_DIGIS)
-			safe_strncpy(new_el->digis[k++], cp, 10);
+			safe_strncpy(new_el->digis[k++], cp, 9);
 		while (k < AX25_MAX_DIGIS)
 			strcpy(new_el->digis[k++], "\0");
 
-		if ((addr = ax25_config_get_addr(new_el->dev)) == NULL) {
+		if ((addr = ax25_config_get_name(new_el->dev)) == NULL) {
 /*			nr_config_load_ports();*/
-
-			if ((addr = nr_config_get_addr(new_el->dev)) == NULL) {
-/*			rs_config_load_ports();*/
-
-				if ((addr = rs_config_get_addr(new_el->dev)) == NULL) {
+			if ((addr = nr_config_get_name(new_el->dev)) == NULL) {
+/*				rs_config_load_ports();*/
+				if ((addr = rs_config_get_name(new_el->dev)) == NULL) {
 					fprintf(stderr,
 						"read_flex_gt: invalid port setting\n");
 					return NULL;
