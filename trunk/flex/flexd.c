@@ -630,7 +630,7 @@ int download_dest(char *gateway, char *fname)
 					buffer[c] = '\n';
 					if ((c < n-1) && ((buffer[c] == '=') && (buffer[c + 1] == '>')
 					|| (buffer[c] == '-' && (buffer[c + 1] == '>'))
-					|| ((buffer[c] == ':')  && (buffer[c - 1] == ' ') && (buffer[c + 1] == ' ')))) 
+					|| ((buffer[c] == ':')  && (buffer[c - 1] == ' ') && (buffer[c + 1] == ' ')))) { 
 					cmd_ack++;
 				}
 			}
