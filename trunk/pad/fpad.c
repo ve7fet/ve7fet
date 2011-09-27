@@ -354,7 +354,8 @@ int main(int argc, char **argv)
 	act.sa_flags = 0;
 	sigaction(SIGTERM, &act, &oact);
 	
-	/* No signal !*/ 
+	/* No signal !*/
+	signal(SIGPIPE, SIG_IGN); /* Ignore SIGPIPE when writing to sockets */ 
 /*
 	for (i = 1 ; i < NSIG ; i++)
 	{
