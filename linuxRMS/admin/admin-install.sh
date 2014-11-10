@@ -33,7 +33,7 @@
 ##
 ## fixed installation information
 ##
-ETCDIR=/etc
+ETCDIR=${3}/etc
 GWDIR=$ETCDIR/rmsgw
 
 ##
@@ -51,9 +51,9 @@ GWGROUP=${2:-rmsgw}
 # get directory prefix, default to /usr/local
 # then set other directory locations
 #
-PREFIX=${3:-/usr/local}
+PREFIX=${3}/usr
 BINDIR=${PREFIX}/bin
-MANDIR=${PREFIX}/man
+MANDIR=${PREFIX}/share/man
 
 
 ##
@@ -112,12 +112,12 @@ setup_user() {
     # lock the account to prevent a potential hole, unless the
     # owner is root
     #
-    if [ "$GWOWNER" != root ]; then
-	echo "Locking user account $GWOWNER..."
-	passwd -l $GWOWNER >/dev/null
+    if [ "$1" != root ]; then
+	echo "Locking user account ${1}..."
+	passwd -l $1 >/dev/null
 	# while the account is locked, make the password to
 	# never expire so that cron will be happy
-	chage -E-1 $GWOWNER >/dev/null
+	chage -E-1 $1 >/dev/null
     fi
 }
 
@@ -130,7 +130,7 @@ setup_user() {
 install_config() {
     echo "Installing configuration and support files..."
 
-    for file in .version_info winlinkservice.xml sysop-template.xml; do
+    for file in winlinkservice.xml sysop-template.xml; do
 	install --backup=numbered -v -m 660 -o $1 -g $2 $file $3
     done
 
@@ -167,12 +167,12 @@ check_user root
 #
 # create gateway group if necessary
 #
-setup_group $GWGROUP
+#setup_group $GWGROUP
 
 #
 # create gateway user if necessary
 #
-setup_user $GWOWNER $GWGROUP
+#setup_user $GWOWNER $GWGROUP
 
 #
 # install configuration files
