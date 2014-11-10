@@ -115,7 +115,7 @@ elif [ "${TYPE}" = "tnt" ]; then
 
 elif [ "${TYPE}" = "fpac" ]; then
 
-	PID=`pidof -x /usr/local/sbin/fpad`
+	PID=`pidof -x /usr/sbin/fpad`
 	if [ -n "${PID}" ]; then
 		echo "${TYPE} channel available"
 		exit 0
