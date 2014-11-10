@@ -1,0 +1,14 @@
+Source: rmsgw
+Section: hamradio 
+Priority: extra
+Maintainer: ve7fet <ve7fet@tparc.org>
+Build-Depends: debhelper (>= 8.0.0), libax25-dev, libncurses5-dev, libxml2, libxml2-dev, libxml2-utils, xutils-dev, python2.7
+Standards-Version: 3.9.3
+Homepage: http://groups.yahoo.com/group/LinuxRMS
+
+Package: rmsgw
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python:Depends}, libax25, ax25tools, libxml2, python-requests
+Description: This package provides a Linux RMS Gateway for use with Winlink
+ This package is a Linux RMS Gateway for use with the Winlink
+ packet radio to email system.
