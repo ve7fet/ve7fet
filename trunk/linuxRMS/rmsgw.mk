@@ -20,10 +20,10 @@ CC	:= gcc
 #
 # user and group for installed files
 #
-INSTUSR	:= rmsgw
-INSTGRP	:= rmsgw
+INSTUSR	:= root 
+INSTGRP	:= root
 
-INSTDIR	:= /usr/local
+INSTDIR	:= ${DESTDIR}
 
 GFLAG	:= -g
 #SSPFLAG	:= -fno-stack-protector
